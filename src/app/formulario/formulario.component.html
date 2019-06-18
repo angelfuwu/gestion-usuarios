@@ -1,0 +1,31 @@
+<div class="box">
+  <form class="itemForm" #f="ngForm" (ngSubmit)="f.form.valid && onGuardarUsuario()">
+    <input class="textbox" type="text" name="nombre" id="nombre" placeholder="nombre" required minlength="3" [(ngModel)]="nombreInput"
+      #nombre="ngModel" /><br>
+    <!--control de errores para el nombre-->
+    <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)">
+      <div class="error" [hidden]="!nombre.errors.required">
+        el nombre no puede estar vacío
+      </div>
+      <div class="error" [hidden]="!nombre.errors.minlength">
+        el nombre debe tener al menos 3 caracteres
+      </div>
+    </div>
+    <input class="textbox" type="text" name="apellido" id="apellido" placeholder="apellido" required minlength="3"
+      [(ngModel)]="apellidoInput" #apellido="ngModel" /><br>
+    <!--control de errores para el apellido-->
+    <div *ngIf="apellido.errors && (apellido.dirty || apellido.touched)">
+      <div class="error" [hidden]="!apellido.errors.required">
+        el apellido no puede estar vacío
+      </div>
+      <div class="error" [hidden]="!apellido.errors.minlength">
+        el apellido debe tener al menos 3 caracteres
+      </div>
+    </div>
+    <!--boton para agregar/modificar un usuario-->
+    <button type="submit" style="cursor: pointer;" [disabled]="nombre.errors || apellido.errors"
+    [ngClass]="{'boton': !nombre.errors || !apellido.errors, 'botonDes':nombre.errors ||apellido.errors}">{{tipoOperacion}}</button>
+    <button class="buttonRed" type="submit" style="cursor: pointer;" (click)="onVolver()">Cancelar</button>
+  </form>
+
+</div>

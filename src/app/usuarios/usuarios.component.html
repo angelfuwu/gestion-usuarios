@@ -1,0 +1,13 @@
+<div style="text-align: center">
+  <button style="cursor: pointer;" (click)="goToAgregar()">Agregar Usuario</button>
+</div>
+<div class="box" *ngIf="usuarios != undefined">
+  <app-usuario *ngFor= "let usuarioElement of usuarios;let i = index" [usuario]="usuarioElement" [indice]="i"></app-usuario>
+</div>
+<router-outlet></router-outlet>
+<div style="text-align: center">
+  <p>
+    <span class="boton" matBadge={{indice}} matBadgeOverlap="false" matBadgeColor="accent">Nº de usuarios</span>
+  </p>
+  <!--<button mat-button color="primary" style="cursor: pointer;margin-top:5px" (click)="resumenUsuarios()">Resumen de usuarios</button>-->
+</div>
